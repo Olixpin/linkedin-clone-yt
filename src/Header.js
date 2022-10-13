@@ -9,8 +9,17 @@ import {
   Notifications,
   SupervisorAccount,
 } from "@material-ui/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, selectUser } from "./features/userSlice";
+import { auth } from "./firebase";
 
 function Header() {
+  const dispatch = useDispatch();
+
+  const logoutOfApp = () => {
+    dispatch(logout());
+    auth.signOut();
+  };
   return (
     <header className="header">
       <div className="header__left">
@@ -28,7 +37,7 @@ function Header() {
         </svg>
         <div className="header__search">
           <SearchIcon />
-          <input type="text" />
+          <input type="text" placeholder="Search" />
         </div>
       </div>
 
@@ -38,10 +47,7 @@ function Header() {
         <HeaderOption title="Jobs" Icon={BusinessCenter} />
         <HeaderOption title="Messaging" Icon={Chat} />
         <HeaderOption title="Notifications" Icon={Notifications} />
-        <HeaderOption
-          title="me"
-          avatar="https://www.svgrepo.com/show/105032/avatar.svg"
-        />
+        <HeaderOption avatar={true} title="me" onClick={logoutOfApp} />
       </div>
     </header>
   );

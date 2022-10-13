@@ -1,7 +1,7 @@
 .sidebar {
   position: sticky;
   top: 80px;
-  flex: 0.2s;
+  flex: 0.2;
   border-radius: 10px;
   text-align: center;
   height: fit-content;
@@ -100,4 +100,10 @@
 .sidebar__hash {
   margin-right: 10px;
   margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
 }
